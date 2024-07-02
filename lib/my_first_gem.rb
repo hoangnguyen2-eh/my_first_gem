@@ -7,7 +7,6 @@ module MyFirstGem
   
   def self.call_external_api(url)
     url = URI.parse(url)
-    begin
     http = Net::HTTP.new(url.host, url.port)
     http.use_ssl = true if url.scheme == "https"
 
@@ -19,10 +18,7 @@ module MyFirstGem
       # Process the response data here
       return response.body
     else
-      raise StandardError, "API request failed with status code #{response.code}"
+      raise StandardError, "API request failed with status code #{response.code}" 
     end
-  rescue StandardError || Net::OpenTimeout
-    raise "API request failed"
   end
-end
 end

@@ -15,7 +15,7 @@ RSpec.describe MyFirstGem do
 
     it "raises an error for failed API request" do
       stub_request(:get, "https://api.example.com").to_return(body: "API response", status: 400)
-      expect { MyFirstGem.call_external_api(url) }.to raise_error(StandardError, "API request failed")
+      expect { MyFirstGem.call_external_api(url) }.to raise_error("API request failed with status code 400")
     end
   end
 end
